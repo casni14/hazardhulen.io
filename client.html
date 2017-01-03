@@ -148,11 +148,13 @@
             $('#join').hide();
             $('#leave').show();
             var name = prompt("Enter your nickname");
+            name = validateInputForJs(name);
             socket.emit('joinTable', name);
         }
 
         function bet() {
             var amount = prompt("Please enter the amount you wish to bet.", "5");
+            amount = validateInputForJs(amount, "");
             socket.emit('bet', amount);
         }
 
@@ -168,6 +170,11 @@
             $('#join').show();
             $('#leave').hide();
             socket.emit('leaveTable')
+        }
+
+        function validateInputForJs(input, replaceChar = "*") {
+            // replaces key 
+            return input.replace(/(\/)|(>)|(<)|(')|(")|(script)|(javascript)|(Javascript)|(JavaScript)/g, replaceChar);
         }
 
     </script>
