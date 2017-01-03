@@ -22,12 +22,12 @@ class Table {
     state : string;
 
     constructor(){
-        this.deck = _.shuffle(_.range(1, 52));
         this.activePlayers = [];
         this.resetHands();
     }
 
     public resetHands() {
+        this.deck = _.shuffle(_.range(1, 52));
         this.dealerHand = [];
         this.dealerScore = 0;
         this.state = 'idle';
@@ -128,13 +128,21 @@ function dealerTurn() {
     for (var ply in table.activePlayers) {
         var player = table.activePlayers[ply];
         if (player.score > dealerScore && player.score < 22) {
-            // player wins
+            // player wins if bigger score than dealer, but not busted.
             player.balance += player.bet * 2
+        }
+        else if (player.score < 22 && dealerScore > 21) {
+            // player wins if dealer busts
+            player.balance += player.bet * 2
+        }
+        else if (player.score === dealerScore && player.score < 22){
+            // return bet if non-busted equal score.
+            player.balance += player.bet * 1;
         }
     }
     table.dealerScore = dealerScore;
     table.state = "postGame";
-    setTimeout(resetTable, 15000);
+    setTimeout(resetTable, 5000);
 }
 
 function calculateScore(hand) : number {
