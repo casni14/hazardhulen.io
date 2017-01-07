@@ -56,8 +56,8 @@ urlcolor=linkcol,
 
 \vfill
 
-\section*{Acknowledgements}
-This paper exceeds the five page limit, due to the usage of images and code snippets, If they were removed, it will abide the limit.
+\section{Acknowledgements}
+This paper exceeds the five page limit of 5, I am sorry about that, the reason for this is the (excessive) usage of images and code snippets, The text accounts for 3.5 pages.
 
 \vfill
 \newpage
@@ -232,7 +232,7 @@ I figured that i could just make a function which escaped the significant charac
 
 I decided to test the responsiveness of the "new" server, to see if the TypeScript implementation had had an impact on this.
 
-I found a tool called loadtest \cite{loadtest}, which can be used to test the responsiveness of a Node server. It does this by setting up concurrent sessions, which makes requests to the specified target, it is very similar to a "controlled" dos attack\footnote{denial of service attack \url{https://en.wikipedia.org/wiki/Denial-of-service_attack}}.
+I found a tool called loadtest \cite{loadtest}, which can be used to test the responsiveness of a Node server. It does this by setting up concurrent sessions, which makes requests to the specified target, it is very similar to a "controlled" dos attack\footnote{ denial of service attack \url{https://en.wikipedia.org/wiki/Denial-of-service_attack}}.
 
 \begin{listing}[H]
 \centering
@@ -246,9 +246,16 @@ $ loadtest -t 60 -c 20 --rps 300 http://localhost:13337
 
 \autoref{lst_loadtest} shows the command I used to test the server responsiveness. I tested for 60 seconds, with 20 concurrent sessions, and 300 requests per second.\\
 
-The tool then returns information about the responsiveness of the server, and gives a mean latency.
+The tool then returns information about the responsiveness of the server, and gives a mean latency\footnote{ results can be found here \url{https://goo.gl/2dVf9y} (link to a file in my github repository)}.
 
+The "Old JS" implementation had a mean latency of 5.6 ms.\\
+The TypeScript implementation had a mean latency of 5 ms.\\
 
+It is important to note that this test has been conducted locally on the machine, which can cause some variance in the results.
+
+The TypeScript (ts) seems to be more responsive than the JS version, this is properly because the ts version is compiled into a good practice code, rather than something which just works, and possibly could be optimized.
+
+I tested, by using the application, that all the functionality of the application works as intended in the ts version, and it did.
 
 
 \subsection{Cros Site Scripting}
@@ -284,9 +291,15 @@ Because the characters has been escaped properly, they show up as they should (s
 
 
 \section{Conclusion}
-\textit{This section concludes the }
+\textit{This section concludes the paper.}
+
+The TypeScript has made it easier for developers, to silly variable mix-up mistakes, and allows for better refactoring, more detailed code help, etc. It is mostly beneficial for developers.
+
+Although it also made a little impact on the responsiveness of the server.
 
 The Cross Site Scripting (xss) was successfully escaped, and has made it more inconvenient for attackers to inject JavaScript into the website.
+
+To secure the application further, it would be a good idea to escape for more languages, as it currently only escapes javascript injections.
 
 \label{page_b4_appendices}
 
