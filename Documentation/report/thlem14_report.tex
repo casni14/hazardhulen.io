@@ -5,7 +5,7 @@
 \usepackage{url}
 \usepackage{enumerate}
 \usepackage{subfiles}
-\usepackage[lmargin=3cm,rmargin=3cm,tmargin=2.5cm,bmargin=2.5cm]{geometry}
+\usepackage[margin=1in,includefoot]{geometry}
 \usepackage{titlesec}
 \usepackage{todonotes}
 \usepackage{graphicx}
@@ -13,7 +13,7 @@
 \usepackage[newfloat]{minted}
 \usepackage{lastpage}
 \usepackage{fancyhdr}
-\usepackage[titletoc,toc,title]{appendix}
+\usepackage[titletoc, title]{appendix}
 
 \definecolor{linkcol}	{RGB}	{42, 93, 176}
 \definecolor{monokaibg} {RGB} 	{41, 42, 35}
@@ -38,13 +38,14 @@ urlcolor=linkcol,
 \vfill}
 \author{
   Thomas A. Lemqvist\\
+  GitHub user: \href{https://github.com/DrBumlehund}{DrBumlehund}\\
   \texttt{thlem14@student.sdu.dk}
 }
 
 \begin{document}
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Thomas A. Lemqvist}
+\rhead{Thomas A. Lemqvist - SB5-TEC-U1}
 \lhead{\includegraphics[height=1cm]{images/sdu-header.png} HazardHulen.IO}
 
 \maketitle
@@ -56,13 +57,14 @@ urlcolor=linkcol,
 
 \vfill
 
-\section{Acknowledgements}
+\section*{Acknowledgements}
 This paper exceeds the five page limit of 5, I am sorry about that, the reason for this is the (excessive) usage of images and code snippets, The text accounts for 3.5 pages.
 
 \vfill
 \newpage
 
 \rfoot{Page \thepage\ of \pageref{page_b4_appendices}}
+\pagenumbering{arabic}
 \setcounter{page}{1}
 
 
@@ -187,7 +189,7 @@ var Table = (function () {
     return Table;
 }());
 \end{minted}
-\caption{the compiled Table}
+\caption{The compiled version of the Table Class}
 \label{lst_table_compiled}
 \end{listing}
 
@@ -308,6 +310,8 @@ To secure the application further, it would be a good idea to escape for more la
 
 
 \clearpage
+\pagenumbering{roman}
+\setcounter{page}{1}
 \rfoot{ }
 \addcontentsline{toc}{section}{References}	
 \bibliographystyle{IEEEtran}
@@ -316,10 +320,17 @@ To secure the application further, it would be a good idea to escape for more la
 \listoffigures
 \listoflistings
 
+\section*{Other links}
+link to a backup of the application, from the first hand in. - can be used as a "before-picture"\\
+\url{https://github.com/DrBumlehund/hazardhulen.io/tree/backup_of_first_hand_in_prototype}\\
+
+link to the github branch, in which i have worked on this paper in.\\
+\url{https://github.com/DrBumlehund/hazardhulen.io/tree/thlem14_edit}
+
 
 % #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-
+\newpage
 \begin{appendices}
 \section{How to Run}
 \label{app_h2r}
