@@ -1,16 +1,21 @@
-object Table {
-  deck : array
+class Table {
+  deck : number[]
+  turnHolder : number
+  activePlayers : Player[]
+  dealerHand : number[]
+  dealerScore : number
   state : string
-  turnHolder : Player
-  activePlayers : array
-  dealerHand : array
-  deck : array
+  resetTable()
 }
 
-object Player {
+class Player {
   id : string
-  hand : array
-  score : int
-  bet : int
-  balance : int
+  hand : number[]
+  score : number
+  bet : number
+  balance : number
+  nickname : string
+  resetHand()
 }
+
+Table o- Player

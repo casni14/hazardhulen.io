@@ -118,7 +118,7 @@ function dealerTurn() {
     }
     table.dealerScore = dealerScore;
     table.state = "postGame";
-    setTimeout(resetTable, 15000);
+    setTimeout(resetTable, 5000);
 }
 function calculateScore(hand) {
     var values = [];
