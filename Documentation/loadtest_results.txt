@@ -1,0 +1,44 @@
+# Tested with the NPM package loadtes https://github.com/alexfernandez/loadtest
+
+# Command:
+$ loadtest -t 60 -c 20 --rps 300 http://localhost:13337
+
+# "Old JS" Implementation.
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Target URL:          http://localhost:13337
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Max time (s):        60
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Concurrency level:   20
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Agent:               none
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Requests per second: 300
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Completed requests:  17850
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Total errors:        0
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Total time:          60.001733206 s
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Requests per second: 297
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Mean latency:        5.6 ms
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO Percentage of the requests served within a certain time
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO   50%      4 ms
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO   90%      9 ms
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO   95%      10 ms
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO   99%      19 ms
+[Sat Jan 07 2017 17:38:45 GMT+0100 (CET)] INFO  100%      68 ms (longest request)
+
+# TypeScript Implementation.
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Target URL:          http://localhost:13337
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Max time (s):        60
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Concurrency level:   20
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Agent:               none
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Requests per second: 300
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Completed requests:  17861
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Total errors:        0
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Total time:          60.002471113 s
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Requests per second: 298
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Mean latency:        5 ms
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO Percentage of the requests served within a certain time
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO   50%      3 ms
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO   90%      8 ms
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO   95%      10 ms
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO   99%      19 ms
+[Sat Jan 07 2017 17:40:28 GMT+0100 (CET)] INFO  100%      73 ms (longest request)

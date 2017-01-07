@@ -229,6 +229,28 @@ I figured that i could just make a function which escaped the significant charac
 
 
 \subsection{TypeScript}
+
+I decided to test the responsiveness of the "new" server, to see if the TypeScript implementation had had an impact on this.
+
+I found a tool called loadtest \cite{loadtest}, which can be used to test the responsiveness of a Node server. It does this by setting up concurrent sessions, which makes requests to the specified target, it is very similar to a "controlled" dos attack\footnote{denial of service attack \url{https://en.wikipedia.org/wiki/Denial-of-service_attack}}.
+
+\begin{listing}[H]
+\centering
+\begin{minted}[firstnumber=1, bgcolor=white]{sh}
+$ loadtest -t 60 -c 20 --rps 300 http://localhost:13337
+\end{minted}
+\caption{The command to execute the loadtest.}
+\label{lst_loadtest}
+\texttt{-t = time   -c = number of sessions  --rps = requests/second}
+\end{listing}
+
+\autoref{lst_loadtest} shows the command I used to test the server responsiveness. I tested for 60 seconds, with 20 concurrent sessions, and 300 requests per second.\\
+
+The tool then returns information about the responsiveness of the server, and gives a mean latency.
+
+
+
+
 \subsection{Cros Site Scripting}
 I tested this, on an older version of the application, by setting my nickname as \texttt{<script>alert('Andy says hello')</script>Andy}
 
