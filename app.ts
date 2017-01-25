@@ -7,6 +7,7 @@ var monolog = require('monolog');
 var Logger = monolog.Logger;
 var ConsoleLogHandler = monolog.handler.ConsoleLogHandler;
 var _ = require('lodash');
+var esapi = require('node-esapi');
 
 declare function require(path: string): any;
 
@@ -23,10 +24,10 @@ class Table {
 
     constructor(){
         this.activePlayers = [];
-        this.resetHands();
+        this.resetTable();
     }
 
-    public resetHands() {
+    public resetTable() {
         this.deck = _.shuffle(_.range(1, 52));
         this.dealerHand = [];
         this.dealerScore = 0;
@@ -63,7 +64,7 @@ var table = new Table();
 
 function resetTable(){
     log.notice("Resetting Table...");
-    table.resetHands();
+    table.resetTable();
 
     for (let player of table.activePlayers) {
         player.newHand();
@@ -176,7 +177,7 @@ function updateTableState() {
     io.sockets.emit('updateTableState', JSON.stringify(table));
 }
 
-function findPlayer(id) {
+function findPlayer(id : string) {
     for (let ply of table.activePlayers) {
         //ply = table.activePlayers[ply];
         if (ply.id == id) return ply;
@@ -194,9 +195,12 @@ io.on('connection', function (client) {
     client.emit('setId', id);
     updateTableState();
 
-    client.on('joinTable', function (nickname) {
+    client.on('joinTable', function (nickname : string) {
         var id = client.conn.id;
         var player = new Player(id);
+        // escapes XSS.
+        nickname = esapi.encoder().encodeForHTML(nickname);
+        nickname = esapi.encoder().encodeForJavaScript(nickname);
         player.nickname = nickname;
         table.activePlayers.push(player);
         updateTableState();
@@ -210,9 +214,23 @@ io.on('connection', function (client) {
         }
     });
 
-    client.on('bet', function (amt) {
-        // Don't allow player to bet twice
+    client.on('bet', function (amt : number) {
+        
+
         var player = findPlayer(client.conn.id);
+
+        if(isNaN(amt) || amt === null) {
+
+        // escape XSS.
+        amt = esapi.encoder().encodeForJavaScript(amt);
+        amt = esapi.encoder().encodeForHTML(amt);
+
+            // if amt is NotANumber - 
+            // bet is set to default value of 5.
+            amt = 5;
+        }
+
+        // Don't allow player to bet twice
         if (player.bet != 0) {
             client.emit('errorAlreadyPlacedBet');
             return;

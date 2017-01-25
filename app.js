@@ -6,14 +6,15 @@ var monolog = require('monolog');
 var Logger = monolog.Logger;
 var ConsoleLogHandler = monolog.handler.ConsoleLogHandler;
 var _ = require('lodash');
+var esapi = require('node-esapi');
 var log = new Logger('hazardhulen');
 log.pushHandler(new ConsoleLogHandler());
 var Table = (function () {
     function Table() {
         this.activePlayers = [];
-        this.resetHands();
+        this.resetTable();
     }
-    Table.prototype.resetHands = function () {
+    Table.prototype.resetTable = function () {
         this.deck = _.shuffle(_.range(1, 52));
         this.dealerHand = [];
         this.dealerScore = 0;
@@ -41,7 +42,7 @@ var Player = (function () {
 var table = new Table();
 function resetTable() {
     log.notice("Resetting Table...");
-    table.resetHands();
+    table.resetTable();
     for (var _i = 0, _a = table.activePlayers; _i < _a.length; _i++) {
         var player = _a[_i];
         player.newHand();
@@ -167,6 +168,9 @@ io.on('connection', function (client) {
     client.on('joinTable', function (nickname) {
         var id = client.conn.id;
         var player = new Player(id);
+        // escapes XSS.
+        nickname = esapi.encoder().encodeForHTML(nickname);
+        nickname = esapi.encoder().encodeForJavaScript(nickname);
         player.nickname = nickname;
         table.activePlayers.push(player);
         updateTableState();
@@ -179,8 +183,16 @@ io.on('connection', function (client) {
         }
     });
     client.on('bet', function (amt) {
-        // Don't allow player to bet twice
         var player = findPlayer(client.conn.id);
+        if (isNaN(amt) || amt === null) {
+            // escape XSS.
+            amt = esapi.encoder().encodeForJavaScript(amt);
+            amt = esapi.encoder().encodeForHTML(amt);
+            // if amt is NotANumber - 
+            // bet is set to default value of 5.
+            amt = 5;
+        }
+        // Don't allow player to bet twice
         if (player.bet != 0) {
             client.emit('errorAlreadyPlacedBet');
             return;

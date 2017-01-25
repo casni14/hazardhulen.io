@@ -148,13 +148,13 @@
             $('#join').hide();
             $('#leave').show();
             var name = prompt("Enter your nickname");
-            name = validateInputForJs(name);
+            // name = validateInputForJs(name);
             socket.emit('joinTable', name);
         }
 
         function bet() {
             var amount = prompt("Please enter the amount you wish to bet.", "5");
-            amount = validateInputForJs(amount);
+            // amount = validateInputForJs(amount);
             socket.emit('bet', amount);
         }
 
@@ -172,16 +172,15 @@
             socket.emit('leaveTable')
         }
 
-        function validateInputForJs(input) {
-            // source for chars : https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content
-            input = input.replace(/(&)/g, "&amp");
-            input = input.replace(/(<)/g, "&lt");
-            input = input.replace(/(>)/g, "&gt");
-            input = input.replace(/(")/g, "&quot");
-            input = input.replace(/(')/g, "&#x27");
-            input = input.replace(/(\/)/g, "&#x2F");
+/*        function validateInputForJs(input) {
+            input = input.replace(/(&)/g,   "&amp");
+            input = input.replace(/(<)/g,   "&lt");
+            input = input.replace(/(>)/g,   "&gt");
+            input = input.replace(/(")/g,   "&quot");
+            input = input.replace(/(')/g,   "&#x27");
+            input = input.replace(/(\/)/g,  "&#x2F");
             return input;
-        }
+        } */
 
     </script>
     <style>
