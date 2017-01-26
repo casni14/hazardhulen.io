@@ -9,8 +9,6 @@ var ConsoleLogHandler = monolog.handler.ConsoleLogHandler;
 var _ = require('lodash');
 var esapi = require('node-esapi');
 
-declare function require(path: string): any;
-
 var log = new Logger('hazardhulen');
 log.pushHandler(new ConsoleLogHandler());
 
@@ -34,7 +32,6 @@ class Table {
         this.state = 'idle';
         this.turnHolder = 0;
     }
-    
 }
 
 class Player {
@@ -143,7 +140,7 @@ function dealerTurn() {
     }
     table.dealerScore = dealerScore;
     table.state = "postGame";
-    setTimeout(resetTable, 5000);
+    setTimeout(resetTable, 15000);
 }
 
 function calculateScore(hand) : number {

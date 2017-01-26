@@ -1,4 +1,4 @@
-# Tested with the NPM package loadtes https://github.com/alexfernandez/loadtest
+# Tested with the NPM package loadtest https://github.com/alexfernandez/loadtest
 
 # Command:
 $ loadtest -t 60 -c 20 --rps 300 http://localhost:13337
