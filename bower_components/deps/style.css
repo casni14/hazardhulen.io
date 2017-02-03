@@ -1,0 +1,59 @@
+.dealerName {
+    margin-left: 100px;
+    border: 2px solid transparent;
+    width: 100px;
+    height: 20px;
+    color:white;
+    font-weight: bold;
+    font-family: Arial;
+    text-shadow: 1px 1px 1px black;
+}
+.dealerScore {
+    margin-left: 100px;
+    border: 2px solid darkslategrey;
+    width: 100px;
+    height: 20px;
+    font-family: Arial;
+    font-weight: bold;
+}
+.dealerSlot {
+    margin-left: 100px;
+    width: 100px;
+    height: 145px;
+    background-color: darkcyan;
+    border: 2px solid darkslategrey;
+}
+.playerSlot {
+    float: left;
+    width: 100px;
+    min-height: 145px;
+    background-color: darkgreen;
+    margin-left: 100px;
+    border: 2px solid darkslategrey;
+}
+.playerScore {
+    float: left;
+    width: 100px;
+    height: 20px;
+    margin-left: 100px;
+    border: 2px solid darkslategrey;
+    font-family: Arial;
+    font-weight: bold;
+}
+.playerName {
+    text-shadow: 1px 1px 1px black;
+    font-family: Arial;
+    float: left;
+    width: 100px;
+    min-height: 20px;
+    margin-left: 100px;
+    border: 2px solid transparent;
+    font-weight: bold;
+}
+body {
+    background-color: #5DB000;
+}
+.cash {
+    font-weight: bold;
+    color: white;
+}
