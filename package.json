@@ -4,7 +4,7 @@
   "description": "The Web Casino, where money and booze is free, and the dealer doesn't give a shit...",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "echo \"Compiling TypeScript\"; tsc; echo \"Running Node.js Server\"; node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

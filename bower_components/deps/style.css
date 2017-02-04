@@ -31,12 +31,29 @@
     margin-left: 100px;
     border: 2px solid darkslategrey;
 }
+.turnholderPlayerSlot {
+    float: left;
+    width: 100px;
+    min-height: 145px;
+    background-color: darkgreen;
+    margin-left: 100px;
+    border: 4px solid red;
+}
 .playerScore {
     float: left;
     width: 100px;
     height: 20px;
     margin-left: 100px;
     border: 2px solid darkslategrey;
+    font-family: Arial;
+    font-weight: bold;
+}
+.turnholderPlayerScore {
+    float: left;
+    width: 100px;
+    height: 20px;
+    margin-left: 100px;
+    border: 4px solid red;
     font-family: Arial;
     font-weight: bold;
 }

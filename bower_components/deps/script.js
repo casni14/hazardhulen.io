@@ -5,36 +5,40 @@ app1.controller('ctrl1', function($scope) {
 
     var port = location.port;
 
-    var ID = null;
+    $scope.ID = null;
 
     var socket = io.connect(location.protocol + '//' + location.hostname + ':' + port + '/');
 
 
     socket.on('setId', function (id) {
-        ID = id;
+        $scope.ID = id;
     });
 
+    $scope.yourTurn = false;
     $scope.showJoinBool = true;
     $scope.showActionsBool = false;
     $scope.table = {};
     $scope.player = {};
     $scope.time = 0;
+    
 
     socket.on('updateTableState', function (boardState) {
         //Handle Board State
-        console.log('Updating Board State: ' + JSON.stringify(boardState));
-        var boardState = JSON.parse(boardState);
+        console.log('Updating Board State...');
+        $scope.table = JSON.parse(boardState);
 
-        $scope.table = boardState;
+        console.log('new table:');
 
-        console.log($scope.table === boardState);
+        console.log($scope.table);
 
-        console.log(boardState);
-        $scope.updatePlayers(boardState);
+        $scope.updatePlayers();
 
-        if (boardState.state == 'postGame') {
+        if ($scope.table.state == 'postGame') {
             startTimer(15000);
         }
+
+        // update all the things ... :D
+        $scope.$apply();
     });
 
     $scope.joinTable = function() {
@@ -78,25 +82,37 @@ app1.controller('ctrl1', function($scope) {
         return 'img/cards/' + cardNumber + '.png';
     }
 
-    $scope.updatePlayers = function(board) {
-        for(let player of board.activePlayers) {
-            if (player.id === ID) {
+    $scope.$watch('table', function(){
+        console.log('table changed');
+    });
+
+    $scope.updatePlayers = function() {
+        for(let i in $scope.table.activePlayers) {
+            const player = $scope.table.activePlayers[i];
+            if (player.id === $scope.ID) {
                 $scope.player = player;
+                if(i === $scope.table.turnHolder){
+                    $scope.yourTurn = true;
+                }
             }
         }
     }
 
-    function startTimer(time) {
-        console.log('Started timer @'+time);
-        $scope.time = (time / 1000) + 1;
+    function startTimer(_time) {
+        console.log('Started timer @' + _time);
+        $scope.time = (_time / 1000) + 1;
         updateTimer();
     }
 
     function updateTimer() {
-        $scope.time -= 1;
-        if (time > 0) {
+        $scope.time = $scope.time - 1;
+        $scope.$apply();
+        if ($scope.time > 0) {
             setTimeout(updateTimer, 1000);
         }
     }
 
+    $scope.isTurnholder = function(i) {
+        return i === $scope.isTurnholder;
+    }
 });

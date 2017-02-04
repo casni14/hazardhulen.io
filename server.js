@@ -14,7 +14,7 @@ var Table = (function () {
         this.resetTable();
     }
     Table.prototype.resetTable = function () {
-        this.deck = _.shuffle(_.range(1, 52));
+        this.deck = _.shuffle(_.range(1, 53));
         this.dealerHand = [];
         this.dealerScore = 0;
         this.state = 'idle';

@@ -13,10 +13,10 @@
     <body>
         <div ng-controller='ctrl1'>
             <div id='playerOptions'>
-                <span class='cash'>Time: <span id='time'>{{time}}</span></span></br>
-                <span class='cash'>Cash: <span id='cash'>{{player.balance}}</span></span></br>
-                <span class='cash'>Bet:  <span id='currentBet'>{{player.bet}}</span></span>
-                </br>
+                <span class='cash'>Time: {{time}} </span></br>
+                <span class='cash'>Cash: {{player.balance}} </span></br>
+                <span class='cash'>Bet: {{player.bet}} </span></br>
+
                 <div ng-if='showActionsBool'>
                     <div ng-if="table.state == 'idle'">
                         <button id='bet' ng-click='bet()'>Bet</button>
@@ -57,25 +57,25 @@
                 <div style='margin-top:200px;text-align: center'>
                     <div style='display: inline-block;'>
                         <div ng-repeat='player in table.activePlayers' class='playerName' id='_name{{player.id}}'>
-                            {{player.nickname}}
-                            <div class='cash'>
+                            <span class='cash' ng-if='player.id == ID'> <i>You</i> </span></br>
+                            <span ng-style='{color: nickColor[$index%nickColor.length]}'>{{player.nickname}}</span></br>
+                            <span class='cash'>
                                 Bet: {{player.bet}} </br> 
                                 Cash: {{player.balance}} 
-                            </div>
+                            </span>
                         </div>
-                        
                     </div>
                 </div>
                 <div style='text-align: center'>
                     <div style='display: inline-block;'>
-                        <div ng-repeat='player in table.activePlayers' class='playerScore' id='_score{{player.id}}'>
+                        <div ng-repeat='player in table.activePlayers' ng-class='{playerScore: table.turnHolder != $index, turnholderPlayerScore: table.turnHolder == $index}' id='_score{{player.id}}'>
                             {{player.score}}
                         </div>
                     </div>
                 </div>
                 <div style='text-align: center'>
                     <div id='cardHolder' style='display: inline-block;'>
-                        <div ng-repeat='player in table.activePlayers' class='playerSlot' id='_slot{{player.id}}'>
+                        <div ng-repeat='player in table.activePlayers' ng-class='{playerSlot: table.turnHolder != $index, turnholderPlayerSlot: table.turnHolder == $index}' id='_slot{{player.id}}'>
                             <div style='height: 135px'> <!-- im a filler div :) --> </div>
                             <img ng-repeat='card in player.hand' style='width:100px;height:145px;margin-top: -135px' ng-src='{{getCardPath(card)}}'>
                         </div>
