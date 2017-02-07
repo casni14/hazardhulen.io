@@ -272,6 +272,7 @@ io.on('connection', function (client) {
         updateTableState();
     });
 });
-server.listen(13337);
-log.info('Server listening on localhost:13337');
+var port = process.env.port || 3000;
+server.listen(port);
+log.info('Server listening on port:' + port);
 //# sourceMappingURL=server.js.map

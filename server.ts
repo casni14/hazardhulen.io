@@ -319,5 +319,8 @@ io.on('connection', function (client) {
     });
 });
 
-server.listen(13337);
-log.info('Server listening on localhost:13337');
+let port = process.env.port || 3000;
+
+server.listen(port);
+
+log.info('Server listening on port:' + port);
