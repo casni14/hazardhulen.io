@@ -157,12 +157,12 @@ function findPlayer(id) {
     }
 }
 function validateInputForJs(input) {
-    input = input.replace(/(&)/g, '&amp');
-    input = input.replace(/(<)/g, '&lt');
-    input = input.replace(/(>)/g, '&gt');
-    input = input.replace(/(")/g, '&quot');
-    input = input.replace(/(')/g, '&#x27');
-    input = input.replace(/(\/)/g, '&#x2F');
+    input = input.replace(/(&)/g, "&amp");
+    input = input.replace(/(<)/g, "&lt");
+    input = input.replace(/(>)/g, "&gt");
+    input = input.replace(/(")/g, "&quot");
+    input = input.replace(/(')/g, "&#x27");
+    input = input.replace(/(\/)/g, "&#x2F");
     return input;
 }
 ;
@@ -272,7 +272,14 @@ io.on('connection', function (client) {
         updateTableState();
     });
 });
-var port = process.env.port || 3000;
+var port;
+if (process.env.port) {
+    port = process.env.port;
+}
+else {
+    console.log("process.env.port not defined");
+    port = 4200;
+}
 server.listen(port);
 log.info('Server listening on port:' + port);
 //# sourceMappingURL=server.js.map
