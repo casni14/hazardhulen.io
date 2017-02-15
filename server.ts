@@ -323,7 +323,7 @@ if (process.env.port) {
     port = process.env.port;
 } else {
     console.log("process.env.port not defined");
-    port = 4200;
+    port = 8080;
 }
 
 server.listen(port);
