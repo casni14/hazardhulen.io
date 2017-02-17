@@ -1,0 +1,63 @@
+.dealer, .dealerSlot, .dealerScore, .dealerName, .turnHolder {
+  margin-left: auto;
+  margin-right: auto; }
+
+.player {
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 50px; }
+
+.slot, .dealerSlot, .playerSlot {
+  width: 100px;
+  height: 145px;
+  background-color: darkgreen;
+  border: 2px solid darkslategrey; }
+
+.dealerSlot {
+  background-color: darkcyan;
+  margin-bottom: 100px; }
+
+.score, .dealerScore, .playerScore {
+  border: 2px solid darkslategrey;
+  width: 100px;
+  min-height: 20px;
+  text-align: center;
+  margin-bottom: 5px; }
+
+.name, .dealerName, .playerName {
+  border: 2px solid transparent;
+  width: 100px;
+  min-height: 20px;
+  text-align: center; }
+
+.dealerName {
+  color: white;
+  text-shadow: 1px 1px 1px black; }
+
+.fill {
+  height: 145px; }
+
+.card {
+  width: 100px;
+  height: 145px;
+  margin-top: -135px; }
+
+.info {
+  color: white;
+  text-shadow: 1px 1px 1px black; }
+
+.turnHolder {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid red; }
+
+body {
+  background-color: #5DB000; }
+
+.font, .score, .dealerScore, .playerScore, .name, .dealerName, .playerName, .info {
+  font-weight: bold;
+  font-family: Arial; }
+
+/*# sourceMappingURL=styles.css.map */
