@@ -10,6 +10,10 @@ var _ = require('lodash');
 var log = new Logger('hazardhulen');
 log.pushHandler(new ConsoleLogHandler());
 
+io.configure(function () {
+    io.set('trasports', ['websocket', 'xhr-polling']);
+});
+
 function Table() {
         this.deck = _.shuffle(_.range(1, 53)),
         this.turnHolder = 0,
