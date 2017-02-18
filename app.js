@@ -10,8 +10,8 @@ var _ = require('lodash');
 var log = new Logger('hazardhulen');
 log.pushHandler(new ConsoleLogHandler());
 
-function table() {
-    this.deck = _.shuffle(_.range(1, 52)),
+function Table() {
+        this.deck = _.shuffle(_.range(1, 53)),
         this.turnHolder = 0,
         this.activePlayers = [],
         this.dealerHand = [],
@@ -20,20 +20,21 @@ function table() {
 };
 
 function Player(id) {
-    this.id = id,
+        this.id = id,
         this.hand = [],
         this.score = 0,
         this.bet = 0,
-        this.balance = 100
+        this.balance = 100,
         this.nickname = "NoName";
 };
 
-var table = new table();
+var table = new Table();
 
 function resetTable(){
     log.notice("Resetting Table...");
     table.dealerHand = [];
     table.dealerScore = 0;
+    table.deck = _.shuffle(_.range(1, 53))
     for (var ply in table.activePlayers) {
         ply = table.activePlayers[ply];
         ply.hand = [];
@@ -99,10 +100,26 @@ function dealerTurn() {
 
     //Calculate Winners & Payout
     for (var ply in table.activePlayers) {
+        console.log(table.activePlayers.length);
         var player = table.activePlayers[ply];
-        if (player.score > dealerScore && player.score < 22) {
-            // player wins
-            player.balance += player.bet * 2
+        console.log("Player Bet: " + player.bet);
+        console.log("Player balance: " + player.balance);
+        console.log("Player score: " + player.score);
+        console.log("Dealer score: " + dealerScore);
+
+        if ((player.score >= dealerScore && player.score <= 21) || dealerScore > 21) {
+            if(player.score == dealerScore){
+                // push
+                console.log("Player Bet" + player.bet);
+                player.balance += parseInt(player.bet);
+                console.log("Player new balance: " + player.balance);
+            } else if (player.score == 21) {
+                // Blackjack
+                Number(player.balance += player.bet * 2.5)
+            } else {
+                // Win
+               Number(player.balance += player.bet * 2)
+            }      
         }
     }
     table.dealerScore = dealerScore;
@@ -262,9 +279,14 @@ io.on('connection', function (client) {
 
     client.on('disconnect', function () {
         table.activePlayers.splice(table.activePlayers.indexOf(findPlayer(client.conn.id)), 1);
+        if(table.activePlayers.length == 0){
+            resetTable();
+        }
         updateTableState();
     });
 });
 
-server.listen(13337);
-log.info('Server listening on localhost:13337');
+var port = process.env.port || 13327;
+
+server.listen(port);
+log.info('Server listening on localhost:13327');

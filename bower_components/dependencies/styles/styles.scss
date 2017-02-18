@@ -1,0 +1,102 @@
+.dealer {
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.player {
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px
+}
+
+.slot {
+    width: 100px;
+    height: 145px;
+    background-color: darkgreen;
+    border: 2px solid darkslategrey;
+}
+
+        .dealerSlot {
+            @extend .slot;
+            @extend .dealer;
+            background-color: darkcyan;
+            margin-bottom: 100px
+        }
+
+        .playerSlot {
+            @extend .slot;
+        }
+
+.score {  
+    @extend .font;
+    border: 2px solid darkslategrey;
+    width: 100px;
+    min-height: 20px;
+    text-align: center;
+    margin-bottom: 5px
+}
+
+        .dealerScore{
+            @extend .score;
+            @extend .dealer;
+        }
+
+        .playerScore {
+            @extend .score;
+        }
+
+.name {
+    @extend .font;
+    border: 2px solid transparent;
+    width: 100px;
+    min-height: 20px;
+    text-align: center
+}
+
+        .dealerName {
+            @extend .name;
+            @extend .dealer;
+            color: white;
+            text-shadow: 1px 1px 1px black
+        }
+
+        .playerName {
+            @extend .name;
+        }
+
+.fill {
+    height: 145px;
+}
+
+.card {
+    width:100px;
+    height:145px;
+    margin-top: -135px
+}
+
+.info {
+    @extend .font;
+    color: white;
+    text-shadow: 1px 1px 1px black
+}
+
+.turnHolder {
+    width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 20px solid red;   
+    @extend .dealer
+}
+
+body {
+    background-color: #5DB000;
+}
+
+.font {
+    font-weight: bold;
+    font-family: Arial;
+}
+
+
+    
