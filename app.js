@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, {'transports': ['websocket', 'xhr-polling']});
 var monolog = require('monolog');
 var Logger = monolog.Logger;
 var ConsoleLogHandler = monolog.handler.ConsoleLogHandler;
@@ -9,10 +9,6 @@ var _ = require('lodash');
 
 var log = new Logger('hazardhulen');
 log.pushHandler(new ConsoleLogHandler());
-
-io.configure(function () {
-    io.set('trasports', ['websocket', 'xhr-polling']);
-});
 
 function Table() {
         this.deck = _.shuffle(_.range(1, 53)),
