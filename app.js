@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io')(server, {'transports': ['websocket', 'xhr-polling']});
+var io = require('socket.io')(server, {'transports': ['websocket', 'polling']});
 var monolog = require('monolog');
 var Logger = monolog.Logger;
 var ConsoleLogHandler = monolog.handler.ConsoleLogHandler;
