@@ -54,7 +54,6 @@ app.controller('clientNGJSCtrl', function($scope) {
         $scope.showActions = true;
         var name = prompt("Enter your nickname");
         socket.emit('joinTable', name);
-       // $scope.$apply();
     }
 
         $scope.leaveTable = function() {
@@ -84,7 +83,6 @@ app.controller('clientNGJSCtrl', function($scope) {
                 $scope.player = player;
             }
         }
-
     }
 
 });

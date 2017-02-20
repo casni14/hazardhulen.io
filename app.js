@@ -68,9 +68,11 @@ function dealerTurn() {
     var dealerScore = calculateScore(table.dealerHand);
     var highestHandOnTable;
     var lowestHandOnTable;
-    for (var ply in table.activePlayers) {
-        var player = table.activePlayers[ply];
-        if (player.score > 21) highestHandOnTable *= -1;
+    for (var _i = 0, _a = table.activePlayers; _i < _a.length; _i++) {
+        var player = _a[_i];
+        if (player.score > 21) {
+            highestHandOnTable *= -1;
+        }
         highestHandOnTable = Math.max(highestHandOnTable, player.score);
         lowestHandOnTable = Math.min(lowestHandOnTable, player.score);
     }
