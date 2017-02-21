@@ -109,7 +109,7 @@ function dealerTurn() {
         console.log("Player score: " + player.score);
         console.log("Dealer score: " + dealerScore);
 
-        if ((player.score >= dealerScore && player.score <= 21) || dealerScore > 21) {
+        if ((player.score >= dealerScore && player.score <= 21) || player.score <= 21 && dealerScore > 21) {
             if(player.score == dealerScore){
                 // push
                 console.log("Player Bet" + player.bet);
